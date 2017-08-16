@@ -13,7 +13,7 @@
 #define TIME_UNITS micros
 //#define TIME_UNITS millis
 
-const int arrayLenght = 20;
+const int arrayLenght = 200;
 unsigned long data[arrayLenght];
 
 volatile unsigned long counter = 0;
