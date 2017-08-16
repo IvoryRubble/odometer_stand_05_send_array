@@ -27,7 +27,7 @@ void setup() {
   digitalWrite(IN4, LOW);
   digitalWrite(ENB, LOW);
   pinMode(interruptPin1, INPUT);
-  pinMode(interruptPin2, INPUT);
+  //pinMode(interruptPin2, INPUT);
   attachInterrupt(digitalPinToInterrupt(interruptPin1), sensorHandler, CHANGE);
   motor(140);
   Serial.println("counter1,dt1,t1,counter2,dt2,t2");
@@ -52,8 +52,8 @@ void loop() {
 }
 
 void printData() {
-  for (int i = 0; i < dataLenght; i++) {
-    Serial.println(data);
+  for (int i = 0; i < arrayLenght; i++) {
+    Serial.println(data[i]);
   }
 }
 
