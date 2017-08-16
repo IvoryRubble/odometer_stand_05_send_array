@@ -13,7 +13,7 @@
 #define TIME_UNITS micros
 //#define TIME_UNITS millis
 
-const int arrayLenght = 100;
+const int arrayLenght = 20;
 unsigned long data[arrayLenght];
 
 volatile unsigned long counter = 0;
@@ -30,7 +30,6 @@ void setup() {
   //pinMode(interruptPin2, INPUT);
   attachInterrupt(digitalPinToInterrupt(interruptPin1), sensorHandler, CHANGE);
   motor(140);
-  Serial.println("counter1,dt1,t1,counter2,dt2,t2");
   //waitSerial();
 }
 
@@ -42,9 +41,10 @@ void sensorHandler() {
 }
 
 void loop() {
-  if (counter > arrayLenght) {
+  if (counter >= arrayLenght) {
     detachInterrupt(digitalPinToInterrupt(interruptPin1));
     printData();
+    counter = 0;
     attachInterrupt(digitalPinToInterrupt(interruptPin1), sensorHandler, CHANGE);
   }
   delay(10);
@@ -55,6 +55,7 @@ void printData() {
   for (int i = 0; i < arrayLenght; i++) {
     Serial.println(data[i]);
   }
+  Serial.println();
 }
 
 void motorControl() {
